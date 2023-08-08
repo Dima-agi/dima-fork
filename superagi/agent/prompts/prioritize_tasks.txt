@@ -9,6 +9,6 @@ You have following incomplete tasks `{pending_tasks}`. You have following comple
 
 Based on this, evaluate the incomplete tasks and sort them in the order of execution. In output first task will be executed first and so on.
 Remove if any tasks are unnecessary or duplicate incomplete tasks. Remove tasks if they are already covered in completed tasks.
-Remove tasks if it does not help in achieving the main goal.
+Remove tasks if it does not help in achieving the main goal.ALWAYS RESPOND IN ROMANIAN.
 
 Your answer should be an array of strings that can be used with JSON.parse() and NOTHING ELSE.

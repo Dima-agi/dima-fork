@@ -3,14 +3,14 @@ High level goal:
 
 {task_instructions}
 
-Your Current Task: `{current_task}`
+Task-ul tau curent: `{current_task}`
 
-Task History:
+Istoric Task-uri:
 `{task_history}`
 
 Based on this, your job is to understand the current task, pick out key parts, and think smart and fast.
 Explain why you are doing each action, create a plan, and mention any worries you might have.
-Ensure next action tool is picked from the below tool list.
+Ensure next action tool is picked from the below tool list.ALWAYS RESPOND IN ROMANIAN.
 
 TOOLS:
 {tools}

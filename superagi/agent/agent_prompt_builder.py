@@ -153,7 +153,7 @@ class AgentPromptBuilder:
         final_output = ""
         if "{task_history}" in super_agi_prompt:
             for task in reversed(completed_tasks[-10:]):
-                final_output = f"Task: {task['task']}\nResult: {task['response']}\n" + final_output
+                final_output = f"<b>Task:</b> {task['task']}\n<b>Result:</b> {task['response']}\n" + final_output
                 token_count = TokenCounter.count_message_tokens([{"role": "user", "content": final_output}])
                 # giving buffer of 100 tokens
                 if token_count > min(600, pending_tokens):

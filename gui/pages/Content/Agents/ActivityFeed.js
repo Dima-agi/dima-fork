@@ -127,7 +127,10 @@ export default function ActivityFeed({selectedRunId, selectedView, setFetchedDat
                 {f.role === 'user' && <div className={styles.feed_icon}>💁</div>}
                 {f.role === 'system' && <div className={styles.feed_icon}>🛠️ </div>}
                 {f.role === 'assistant' && <div className={styles.feed_icon}>💡</div>}
-                <div className={styles.feed_title}>{f?.feed || ''}</div>
+                <div
+                    className={styles.feed_title}
+                    dangerouslySetInnerHTML={{ __html: f?.feed || '' }}
+                  ></div>
               </div>
               <div className={styles.more_details_wrapper}>
                 {f.time_difference && <div className={styles.more_details}>

@@ -27,7 +27,7 @@ class ThinkingTool(BaseTool):
         llm: LLM used for thinking.
     """
     llm: Optional[BaseLlm] = None
-    name = "ThinkingTool"
+    name = "DIMA Observer"
     description = (
         "Intelligent problem-solving assistant that comprehends tasks, identifies key variables, and makes efficient decisions, all while providing detailed, self-driven reasoning for its choices. Do not assume anything, take the details from given data only."
     )

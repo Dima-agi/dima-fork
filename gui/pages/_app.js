@@ -33,7 +33,7 @@ export default function App() {
   const [userName, setUserName] = useState('');
   const [organisationId, setOrganisationId] = useState(null);
   const [env, setEnv] = useState('DEV');
-  const [loadingText, setLoadingText] = useState("Initializing SuperAGI");
+  const [loadingText, setLoadingText] = useState("Initialiez DIMA AI");
   const router = useRouter();
   const [showMarketplace, setShowMarketplace] = useState(false);
   const excludedKeys = [
@@ -107,7 +107,7 @@ export default function App() {
       installFromMarketplace();
     }
 
-    loadingTextEffect('Initializing SuperAGI', setLoadingText, 500);
+    loadingTextEffect('Initializez DIMA AI', setLoadingText, 500);
 
     checkEnvironment()
       .then((response) => {
