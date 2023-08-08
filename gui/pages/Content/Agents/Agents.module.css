@@ -150,10 +150,10 @@
 }
 
 .tab_button:hover {
-    background: #454254;
+    background: rgb(24, 24, 34);
 }
 .run_history_button{
-    background: rgba(255, 255, 255, 0.14);
+    background: rgb(24, 24, 34);
     border: none;
     font-style: normal;
     font-weight: 400;
@@ -234,16 +234,16 @@
 }
 
 .feed_title {
-    font-family: 'Source Code Pro';
+    /* font-family: 'Source Code Pro'; */
     margin-left: 10px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    color: white;
-    white-space: pre-line;
-    word-wrap: break-word;
-    max-width: 95%;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 16px;
+color: #181818;
+white-space: pre-line;
+word-wrap: break-word;
+max-width: 95%;
 }
 
 .feed_icon {

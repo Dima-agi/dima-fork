@@ -63,7 +63,7 @@ export default function Details({agentDetails, runCount, goals, instructions, ag
   }, [agentScheduleDetails]);
 
   return (<>
-    <div className={styles.history_box} style={{background: '#272335', padding: '15px', cursor: 'default'}}>
+    <div className={styles.history_box} style={{background: 'linear-gradient(121deg, rgb(24, 24, 34) 2%, rgb(14, 14, 22) 100%)', padding: '15px', cursor: 'default',border: '1px solid #6898e3'}}>
       <div className={styles.detail_name}>{agentDetails?.name || ''}</div>
       <div>{agentDetails?.description || ''}</div>
       <div className={styles.separator}></div>
@@ -72,7 +72,7 @@ export default function Details({agentDetails, runCount, goals, instructions, ag
         <div>
           <div className={styles.agent_info_box}>
             <div><Image width={12} height={12} src="/images/calls_made.svg" alt="calls-icon"/></div>
-            <div style={info_text_secondary}>Total Calls</div>
+            <div style={info_text_secondary}>Call-uri totale</div>
           </div>
           <div className={styles.feed_title}
                style={{fontSize: '20px', marginLeft: '0'}}>{formatNumber(agentDetails?.calls || 0)}</div>
@@ -80,14 +80,14 @@ export default function Details({agentDetails, runCount, goals, instructions, ag
         <div>
           <div className={styles.agent_info_box}>
             <div><Image width={12} height={12} src="/images/runs_made.svg" alt="runs-icon"/></div>
-            <div style={info_text_secondary}>Total Runs</div>
+            <div style={info_text_secondary}>Run-uri totale</div>
           </div>
           <div className={styles.feed_title} style={{fontSize: '20px', marginLeft: '0'}}>{runCount || 0}</div>
         </div>
         <div>
           <div className={styles.agent_info_box}>
             <div><Image width={12} height={12} src="/images/tokens_consumed.svg" alt="tokens-icon"/></div>
-            <div style={info_text_secondary}>Tokens Consumed</div>
+            <div style={info_text_secondary}>Consum tokens</div>
           </div>
           <div className={styles.feed_title}
                style={{fontSize: '20px', marginLeft: '0'}}>{formatNumber(agentDetails?.tokens || 0)}</div>
@@ -96,7 +96,7 @@ export default function Details({agentDetails, runCount, goals, instructions, ag
       <div className={styles.separator}></div>
       <div className={styles.agent_info_box}>
         <div><Image width={15} height={15} src="/images/flag.svg" alt="goals-icon"/></div>
-        <div style={info_text}>{goals ? goals.length : 0} Goals</div>
+        <div style={info_text}>{goals ? goals.length : 0} Task-uri</div>
       </div>
       {goals && goals.length > 0 && <div>
         <div className={styles.large_text_box} style={!showGoals ? {overflow: 'hidden', display: '-webkit-box'} : {}}>
@@ -131,7 +131,7 @@ export default function Details({agentDetails, runCount, goals, instructions, ag
         <div className={styles.separator}></div>
         <div className={styles.agent_info_box}>
           <div><Image width={15} height={15} src="/images/tools_dark.svg" alt="tools-icon"/></div>
-          <div style={info_text}>Tools assigned</div>
+          <div style={info_text}>Tool-uri</div>
         </div>
         <div className={styles.agent_info_tools}>
           {agentDetails.tools.map((tool, index) =>
@@ -155,7 +155,7 @@ export default function Details({agentDetails, runCount, goals, instructions, ag
           </div>))}
         </div>
         <div className={styles.show_more_button}
-             onClick={() => setShowConstraints(!showConstraints)}>{showConstraints ? 'Show Less' : 'Show More'}</div>
+             onClick={() => setShowConstraints(!showConstraints)}>{showConstraints ? 'Mai putin' : 'Mai mult'}</div>
       </div>}</div>}
       <div className={styles.separator}></div>
       <div className={styles.agent_info_box}>
@@ -184,7 +184,7 @@ export default function Details({agentDetails, runCount, goals, instructions, ag
       </div>
       {agentDetails?.max_iterations && <div className={styles.agent_info_box}>
         <div><Image width={15} height={15} src="/images/info.svg" alt="info-icon"/></div>
-        <div style={info_text}>Stop after {agentDetails.max_iterations} iterations</div>
+        <div style={info_text}>Se opreste dupa {agentDetails.max_iterations} iteratii</div>
       </div>}
       {agent?.is_scheduled && <div className={styles.agent_info_box}>
         <div><Image width={15} height={15} src="/images/event_repeat.svg" alt="info-icon"/></div>

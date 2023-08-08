@@ -16,15 +16,15 @@ export default function SideBar({onSelectEvent, env}) {
 
   return (
     <div className={styles.side_bar}>
-      <div><Image width={64} height={48} className={styles.logo}
-                  src={env === 'PROD' ? '/images/superagi_logo_beta.png' : '/images/superagi_logo.png'} alt="super-agi-logo"/>
+      <div><Image width={48} height={48} className={styles.logo}
+                  src={env === 'PROD' ? '/images/dimal.png' : '/images/dimal.png'} alt="super-agi-logo"/>
       </div>
       <div className={styles.selection_section}>
         <div onClick={() => handleClick(sectionSelected !== 'agents' ? 'agents' : '')}
              className={`${styles.section} ${sectionSelected === 'agents' ? styles.selected : ''}`}>
           <div className={styles.button_icon}><Image width={17} height={17} src="/images/agents_light.svg"
                                                      alt="agent-icon"/></div>
-          <div>Agents</div>
+          <div>Asistenti</div>
         </div>
       </div>
       <div className={styles.selection_section}>
@@ -32,14 +32,14 @@ export default function SideBar({onSelectEvent, env}) {
              className={`${styles.section} ${sectionSelected === 'toolkits' ? styles.selected : ''}`}>
           <div className={styles.button_icon}><Image width={17} height={17} src="/images/tools_light.svg"
                                                      alt="tools-icon"/></div>
-          <div>Toolkits</div>
+          <div>Tool-uri</div>
         </div>
       </div>
       <div className={styles.selection_section}>
         <div onClick={() => handleClick(sectionSelected !== 'apm' ? 'apm' : '')}
              className={styles.section}>
           <div className={styles.button_icon}><Image width={17} height={17} src="/images/apm.svg" alt="apm-icon"/></div>
-          <div>APM</div>
+          <div>Stats</div>
         </div>
       </div>
       <div className={styles.selection_section}>
@@ -47,7 +47,7 @@ export default function SideBar({onSelectEvent, env}) {
              className={`${styles.section} ${sectionSelected === 'knowledge' ? styles.selected : ''}`}>
           <div className={styles.button_icon}><Image width={17} height={17} src="/images/knowledge.svg"
                                                      alt="knowledge-icon"/></div>
-          <div>Knowledge</div>
+          <div>Memorie</div>
         </div>
       </div>
     </div>

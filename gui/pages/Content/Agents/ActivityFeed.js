@@ -7,7 +7,7 @@ import {EventBus} from "@/utils/eventBus";
 import {ClipLoader} from 'react-spinners';
 
 export default function ActivityFeed({selectedRunId, selectedView, setFetchedData, agent}) {
-  const [loadingText, setLoadingText] = useState("Thinking");
+  const [loadingText, setLoadingText] = useState("Gandesc");
   const [feeds, setFeeds] = useState([]);
   const feedContainerRef = useRef(null);
   const [runStatus, setRunStatus] = useState("CREATED");
@@ -37,7 +37,7 @@ export default function ActivityFeed({selectedRunId, selectedView, setFetchedDat
   }
 
   useEffect(() => {
-    loadingTextEffect('Thinking', setLoadingText, 250);
+    loadingTextEffect('Gandesc', setLoadingText, 250);
 
     if (agent?.is_scheduled && !agent?.is_running) {
       fetchDateTime();
@@ -122,7 +122,7 @@ export default function ActivityFeed({selectedRunId, selectedView, setFetchedDat
             </div>
           </div> : <div>
             {feeds && feeds.map((f, index) => (<div key={index} className={styles.history_box}
-                                                    style={{background: '#272335', padding: '20px', cursor: 'default'}}>
+                                                    style={{background: '#6898e3ab', padding: '20px', cursor: 'default',border:'1px solid #6898e3'}}>
               <div style={{display: 'flex'}}>
                 {f.role === 'user' && <div className={styles.feed_icon}>💁</div>}
                 {f.role === 'system' && <div className={styles.feed_icon}>🛠️ </div>}
@@ -143,7 +143,7 @@ export default function ActivityFeed({selectedRunId, selectedView, setFetchedDat
               </div>
             </div>))}
             {runStatus === 'RUNNING' &&
-              <div className={styles.history_box} style={{background: '#272335', padding: '20px', cursor: 'default'}}>
+              <div className={styles.history_box} style={{background: '#f9bf64cf', padding: '20px', cursor: 'default',border:'1px solid #ffd566'}}>
                 <div style={{display: 'flex'}}>
                   <div style={{fontSize: '20px'}}>🧠</div>
                   <div className={styles.feed_title}><i>{loadingText}</i></div>

@@ -516,10 +516,10 @@ p {
     width: auto;
     border-radius: 8px;
     font-size: 14px;
-    color: white;
+    color: #fff;
     height: 32px;
-    background: #4D4A5A;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgb(72, 105, 157);
+    border: 1px solid rgb(104, 152, 227);
     text-align: center;
     padding: 7px 15px;
     display: -webkit-flex;
@@ -527,7 +527,6 @@ p {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -562,6 +561,8 @@ p {
     border-right: 1px solid #33303F;
     overflow-y: scroll;
     padding: 0 6px;
+    background:#0e0e19;
+    box-shadow: 18px -9px 13px -19px #000;
 }
 
 .contentStyle {
@@ -573,7 +574,7 @@ p {
     height: 100vh;
     width: 100vw;
     display: flex;
-    background-color: #1B192C;
+    background-color: #09090f;
 }
 
 .workSpaceStyle {

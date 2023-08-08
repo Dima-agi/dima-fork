@@ -101,7 +101,7 @@ export default function ResourceManager({agentId, runs}) {
         <div style={{display: 'flex', order: 0}}>
           <div>
             <button onClick={() => setChannel('input')} className={styles.tab_button} style={channel === 'input' ? {
-              background: '#454254',
+              background: 'rgb(24, 24, 34)',
               padding: '5px 10px'
             } : {background: 'transparent', padding: '5px 10px'}}>
               Input
@@ -109,7 +109,7 @@ export default function ResourceManager({agentId, runs}) {
           </div>
           <div>
             <button onClick={() => setChannel('output')} className={styles.tab_button} style={channel === 'output' ? {
-              background: '#454254',
+              background: 'rgb(24, 24, 34)',
               padding: '5px 10px'
             } : {background: 'transparent', padding: '5px 10px'}}>
               Output
