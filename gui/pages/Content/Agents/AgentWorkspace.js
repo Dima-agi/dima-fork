@@ -319,7 +319,7 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
                    onClick={() => setHistory(true)}>
                 <div className={styles.run_history_button}><Image style={{marginTop: '-2px'}} width={16} height={16}
                                                                   src="/images/update.svg"
-                                                                  alt="update-icon"/><span>&nbsp;Show run history</span>
+                                                                  alt="update-icon"/><span>&nbsp;Istoric Run-uri</span>
                 </div>
               </div>}
             <div style={{display: 'flex', alignItems: 'center', marginLeft: '2px'}} className={styles.tab_text}>
@@ -333,8 +333,7 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
             </div>
             <div style={{marginLeft: '7px'}}>
               <button onClick={() => setLeftPanel('activity_feed')} className={styles.tab_button}
-                      style={leftPanel === 'activity_feed' ? {background: 'rgb(24, 24, 34)'} : {background: 'transparent'}}>Activity
-                Feed
+                      style={leftPanel === 'activity_feed' ? {background: 'rgb(24, 24, 34)'} : {background: 'transparent'}}>Feed Activitate
               </button>
             </div>
             {agentDetails && (agentDetails.agent_type === 'Maintain Task Queue' || agentDetails.agent_type === "Fixed Task Queue") &&
@@ -348,7 +347,7 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
           <div style={{display: 'flex'}}>
             <div>
               <button className={styles.run_button} onClick={() => setRunModal(true)}>
-                <Image width={14} height={14} src="/images/run_icon.svg" alt="run-icon"/>&nbsp;New Run
+                <Image width={14} height={14} src="/images/run_icon.svg" alt="run-icon"/>&nbsp;Run Nou
               </button>
             </div>
             <button className="secondary_button" style={{padding: '8px', height: '31px'}}
@@ -357,17 +356,17 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
             </button>
             {dropdown && <div onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
               <ul className="dropdown_container" style={{marginTop: '31px', marginLeft: '-32px'}}>
-                <li className="dropdown_item" onClick={() => saveAgentTemplate()}>Save as Template</li>
+                <li className="dropdown_item" onClick={() => saveAgentTemplate()}>Salveaza ca Template</li>
                 {selectedRun && selectedRun.status === 'RUNNING' && <li className="dropdown_item" onClick={() => {
                   updateRunStatus("PAUSED")
-                }}>Pause</li>}
+                }}>Pauza</li>}
                 {selectedRun && (selectedRun.status === 'CREATED' || selectedRun.status === 'PAUSED') &&
                   <li className="dropdown_item" onClick={() => {
                     updateRunStatus("RUNNING")
-                  }}>Resume</li>}
+                  }}>Continua</li>}
                 {agentExecutions && agentExecutions.length > 1 && <li className="dropdown_item" onClick={() => {
                   updateRunStatus("TERMINATED")
-                }}>Delete Run</li>}
+                }}>Sterge Run</li>}
 
                 {agent?.is_scheduled ? (<div>
                   <li className="dropdown_item" onClick={handleEditScheduleClick}>Edit Schedule</li>
@@ -382,7 +381,7 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
                 <li className="dropdown_item" onClick={() => {
                   setDropdown(false);
                   setDeleteModal(true)
-                }}>Delete Agent
+                }}>Sterge Asistent
                 </li>
               </ul>
             </div>}
@@ -445,7 +444,7 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
                         background: '#454254',
                         paddingRight: '15px'
                       } : {background: 'transparent', paddingRight: '15px'}}>
-                <Image width={14} height={14} src="/images/info.svg" alt="details-icon"/>&nbsp;Details
+                <Image width={14} height={14} src="/images/info.svg" alt="details-icon"/>&nbsp;Detalii
               </button>
             </div>
             <div>
@@ -454,7 +453,7 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
                         background: '#454254',
                         paddingRight: '15px'
                       } : {background: 'transparent', paddingRight: '15px'}}>
-                <Image width={14} height={14} src="/images/home_storage.svg" alt="manager-icon"/>&nbsp;Resource Manager
+                <Image width={14} height={14} src="/images/home_storage.svg" alt="manager-icon"/>&nbsp;Manager Resurse
               </button>
             </div>
             {/*<div>*/}
@@ -484,13 +483,13 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
 
       {runModal && (<div className="modal" onClick={closeRunModal}>
         <div className="modal-content" style={{width: '35%'}} onClick={preventDefault}>
-          <div className={styles.detail_name}>Run agent name</div>
+          <div className={styles.detail_name}>Nume RUN</div>
           <div>
-            <label className={styles.form_label}>Name</label>
+            <label className={styles.form_label}>Nume</label>
             <input className="input_medium" type="text" value={runName} onChange={handleRunNameChange}/>
           </div>
           {goals && goals.length > 0 && <div style={{marginTop: '15px'}}>
-            <div><label className={styles.form_label}>Goals</label></div>
+            <div><label className={styles.form_label}>Task-uri</label></div>
             {goals.map((goal, index) => (<div key={index} style={{
               marginBottom: '10px',
               display: 'flex',
@@ -507,11 +506,11 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
               </div>}
             </div>))}
             <div>
-              <button className="secondary_button" onClick={addGoal}>+ Add</button>
+              <button className="secondary_button" onClick={addGoal}>+ Adauga</button>
             </div>
           </div>}
           <div style={{marginTop: '15px'}}>
-            <div><label className={styles.form_label}>Instructions<span
+            <div><label className={styles.form_label}>Instructiuni<span
               style={{fontSize: '9px'}}>&nbsp;(optional)</span></label></div>
             {instructions.map((goal, index) => (<div key={index} style={{
               marginBottom: '10px',
@@ -530,7 +529,7 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
               </div>}
             </div>))}
             <div>
-              <button className="secondary_button" onClick={addInstruction}>+ Add</button>
+              <button className="secondary_button" onClick={addInstruction}>+ Adauga</button>
             </div>
           </div>
           <div style={{display: 'flex', justifyContent: 'flex-end'}}>
@@ -548,18 +547,17 @@ export default function AgentWorkspace({env, agentId, agentName, selectedView, a
       {deleteModal && (<div className="modal" onClick={closeDeleteModal}>
         <div className="modal-content" style={{width: '502px', padding: '16px', gap: '24px'}} onClick={preventDefault}>
           <div>
-            <label className={styles.delete_agent_modal_label}>Delete Agent</label>
+            <label className={styles.delete_agent_modal_label}>Sterge Asistent</label>
           </div>
           <div>
-            <label className={styles.delete_modal_text}>All the runs and details of this agent will be deleted. Are you
-              sure you want to proceed?</label>
+            <label className={styles.delete_modal_text}>Toate run-urile vor fi sterse impreuna cu asistentul. Esti sigur de asta?</label>
           </div>
           <div style={{display: 'flex', justifyContent: 'flex-end'}}>
             <button className="secondary_button" style={{marginRight: '10px'}} onClick={closeDeleteModal}>
               Cancel
             </button>
             <button className="primary_button" onClick={() => handleDeleteAgent()}>
-              Delete Agent
+              Sterge Asistent
             </button>
           </div>
         </div>

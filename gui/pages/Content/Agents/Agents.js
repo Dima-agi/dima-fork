@@ -17,7 +17,7 @@ export default function Agents({sendAgentData, agents}) {
             contentType: "Create_Agent",
             internalId: createInternalId()
           })}>
-            + Create Agent
+            + Creare Agent
           </button>
         </div>
 
@@ -40,7 +40,7 @@ export default function Agents({sendAgentData, agents}) {
         </div> : <div style={{
           marginTop: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center'
         }} className="form_label">
-          No Agents found
+          Nici un asistent gasit
         </div>}
       </div>
     </>

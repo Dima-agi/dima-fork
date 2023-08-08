@@ -38,7 +38,7 @@ export default function ResourceList({files, channel, runs}) {
       {channel === 'output' && (!isAnyFileWithAgentId || files.length <= 0 ?
           <div className="vertical_container">
             <Image width={150} height={60} src="/images/no_permissions.svg" alt="no-permissions"/>
-            <span className={styles.feed_title} style={{marginTop: '8px'}}>No Output files!</span>
+            <span className={styles.feed_title} style={{marginTop: '8px'}}>Nici un fisier momentan!</span>
           </div>
           :
           <div id="division_by_runs">

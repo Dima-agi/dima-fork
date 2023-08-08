@@ -93,7 +93,7 @@ export default function AgentCreate({
   const databaseRef = useRef(null);
   const [databaseDropdown, setDatabaseDropdown] = useState(false);
 
-  const permissions = ["God Mode", "RESTRICTED (Will ask for permission before using any tool)"]
+  const permissions = ["God Mode", "Restrictionat (Cere permisiunea user-ului la fiecare actiune)"]
   const [permission, setPermission] = useState(permissions[0]);
   const permissionRef = useRef(null);
   const [permissionDropdown, setPermissionDropdown] = useState(false);
@@ -338,15 +338,15 @@ export default function AgentCreate({
   };
 
   const addGoal = () => {
-    setLocalStorageArray("agent_goals_" + String(internalId), [...goals, 'new goal'], setGoals);
+    setLocalStorageArray("agent_goals_" + String(internalId), [...goals, 'task nou'], setGoals);
   };
 
   const addInstruction = () => {
-    setLocalStorageArray("agent_instructions_" + String(internalId), [...instructions, 'new instructions'], setInstructions);
+    setLocalStorageArray("agent_instructions_" + String(internalId), [...instructions, 'instructiune noua'], setInstructions);
   };
 
   const addConstraint = () => {
-    setLocalStorageArray("agent_constraints_" + String(internalId), [...constraints, 'new constraint'], setConstraints);
+    setLocalStorageArray("agent_constraints_" + String(internalId), [...constraints, 'constrangere noua'], setConstraints);
   };
 
   const handleNameChange = (event) => {
@@ -509,7 +509,7 @@ export default function AgentCreate({
   };
 
   const finaliseAgentCreation = (agentId, name, executionId) => {
-    toast.success('Agent created successfully', {autoClose: 1800});
+    toast.success('Asistent creat cu succes', {autoClose: 1800});
     let timeoutValue = executionId ? 0 : 1500;
 
     setTimeout(() => {
@@ -775,19 +775,19 @@ export default function AgentCreate({
       <div className="col-3"></div>
       <div className="col-6" style={{padding: '25px 20px'}}>
         <div>
-          <div className={styles.page_title}>Create new agent</div>
+          <div className={styles.page_title}>Creare Asistent Nou</div>
         </div>
         <div style={{marginTop: '10px'}}>
           <div>
-            <label className={styles.form_label}>Name</label>
+            <label className={styles.form_label}>Nume</label>
             <input className="input_medium" type="text" value={agentName} onChange={handleNameChange}/>
           </div>
           <div style={{marginTop: '15px'}}>
-            <label className={styles.form_label}>Description</label>
+            <label className={styles.form_label}>Descriere</label>
             <textarea className="textarea_medium" rows={3} value={agentDescription} onChange={handleDescriptionChange}/>
           </div>
           <div style={{marginTop: '15px'}}>
-            <div><label className={styles.form_label}>Goals</label></div>
+            <div><label className={styles.form_label}>Task-uri</label></div>
             {goals.map((goal, index) => (<div key={index} style={{
               marginBottom: '10px',
               display: 'flex',
@@ -804,12 +804,12 @@ export default function AgentCreate({
               </div>}
             </div>))}
             <div>
-              <button className="secondary_button" onClick={addGoal}>+ Add</button>
+              <button className="secondary_button" onClick={addGoal}>+ Adauga</button>
             </div>
           </div>
 
           <div style={{marginTop: '15px'}}>
-            <div><label className={styles.form_label}>Instructions<span
+            <div><label className={styles.form_label}>Instructiuni<span
               style={{fontSize: '9px'}}>&nbsp;(optional)</span></label></div>
             {instructions?.map((goal, index) => (<div key={index} style={{
               marginBottom: '10px',
@@ -853,7 +853,7 @@ export default function AgentCreate({
             </div>
           </div>
           <div style={{marginTop: '15px'}}>
-            <label className={styles.form_label}>Tools</label>
+            <label className={styles.form_label}>Tool-uri</label>
             <div className="dropdown_container_search" style={{width: '100%'}}>
               <div className="custom_select_container" onClick={() => setToolkitDropdown(!toolkitDropdown)}
                    style={{width: '100%', alignItems: 'flex-start'}}>
@@ -875,7 +875,7 @@ export default function AgentCreate({
                   }}
                          onClick={(e) => e.stopPropagation()}/>
                   {toolNames && toolNames.length === 0 && showPlaceholder && searchValue.length === 0 &&
-                    <div style={{color: '#666666', position: 'absolute'}}>Select Tools</div>}
+                    <div style={{color: '#666666', position: 'absolute'}}>Selectare Tool-uri</div>}
                 </div>
                 <div style={{display: 'inline-flex'}}>
                   <Image width={20} height={21} onClick={(e) => clearTools(e)} src='/images/clear_input.svg'
@@ -1034,7 +1034,7 @@ export default function AgentCreate({
           {advancedOptions &&
             <div>
               <div style={{marginTop: '15px'}}>
-                <label className={styles.form_label}>Agent Type</label><br/>
+                <label className={styles.form_label}>Tipul Asistentului</label><br/>
                 <div className="dropdown_container_search" style={{width: '100%'}}>
                   <div className="custom_select_container" onClick={() => setAgentDropdown(!agentDropdown)}
                        style={{width: '100%'}}>
@@ -1059,7 +1059,7 @@ export default function AgentCreate({
                          onChange={() => setLocalStorageValue("has_resource_" + String(internalId), !addResources, setAddResources)}/>
                   <label className={styles.form_label} style={{marginLeft: '7px', cursor: 'pointer'}}
                          onClick={() => setLocalStorageValue("has_resource_" + String(internalId), !addResources, setAddResources)}>
-                    Add Resources
+                    Adauga Resurse
                   </label>
                 </div>
               </div>
@@ -1068,10 +1068,9 @@ export default function AgentCreate({
                   <div className={`file-drop-area ${isDragging ? 'dragging' : ''}`} onDragEnter={handleDragEnter}
                        onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop}
                        onClick={handleDropAreaClick}>
-                    <div><p style={{textAlign: 'center', color: 'white', fontSize: '14px'}}>+ Choose or drop a file
-                      here</p>
-                      <p style={{textAlign: 'center', color: '#888888', fontSize: '12px'}}>Supported file formats are
-                        txt, pdf, docx, epub, csv, pptx only</p>
+                    <div><p style={{textAlign: 'center', color: 'white', fontSize: '14px'}}>+ Adauga fisier</p>
+                      <p style={{textAlign: 'center', color: '#888888', fontSize: '12px'}}>Momentan suporta doar
+                        txt, pdf, docx, epub, csv, pptx </p>
                       <input type="file" ref={fileInputRef} style={{display: 'none'}} onChange={handleFileInputChange}/>
                     </div>
                   </div>
@@ -1100,7 +1099,7 @@ export default function AgentCreate({
                 </div>}
               </div>
               <div style={{marginTop: '15px'}}>
-                <div><label className={styles.form_label}>Constraints</label></div>
+                <div><label className={styles.form_label}>Constrangeri</label></div>
                 {constraints.map((constraint, index) => (<div key={index} style={{
                   marginBottom: '10px',
                   display: 'flex',
@@ -1118,11 +1117,11 @@ export default function AgentCreate({
                   </div>
                 </div>))}
                 <div>
-                  <button className="secondary_button" onClick={addConstraint}>+ Add</button>
+                  <button className="secondary_button" onClick={addConstraint}>+ Adauga</button>
                 </div>
               </div>
               <div style={{marginTop: '15px'}}>
-                <label className={styles.form_label}>Max iterations</label>
+                <label className={styles.form_label}>Numar maxim de iteratii</label>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                   <input style={{width: '90%'}} type="range" min={5} max={100} value={maxIterations}
                          onChange={handleIterationChange}/>
@@ -1146,7 +1145,7 @@ export default function AgentCreate({
               {/*  </div>*/}
               {/*</div>*/}
               <div style={{marginTop: '15px'}}>
-                <label className={styles.form_label}>Time between steps (in milliseconds)</label>
+                <label className={styles.form_label}>Timp intre actiuni (in milisecunde)</label>
                 <input className="input_medium" type="number" value={stepTime} onChange={handleStepChange}/>
               </div>
               {/*<div style={{marginTop: '15px'}}>*/}
@@ -1173,7 +1172,7 @@ export default function AgentCreate({
               {/*  </div>*/}
               {/*</div>}*/}
               <div style={{marginTop: '15px'}}>
-                <label className={styles.form_label}>Permission Type</label>
+                <label className={styles.form_label}>Tipul permisiunilor</label>
                 <div className="dropdown_container_search" style={{width: '100%'}}>
                   <div className="custom_select_container" onClick={() => setPermissionDropdown(!permissionDropdown)}
                        style={{width: '100%'}}>
@@ -1205,19 +1204,19 @@ export default function AgentCreate({
                       onClick={() => {
                         updateTemplate()
                       }}>
-                Update Template
+                Actualizare Template
               </button>
             )}
             <div style={{display: 'flex', position: 'relative'}}>
               {createDropdown && (<div className="create_agent_dropdown_options" onClick={() => {
                 setCreateModal(true);
                 setCreateDropdown(false);
-              }}>Create & Schedule Run
+              }}>Creaza si Programeaza
               </div>)}
               <div className="primary_button"
                    style={{backgroundColor: 'white', marginBottom: '4px', paddingLeft: '0', paddingRight: '5px'}}>
                 <button disabled={!createClickable} className="primary_button" style={{paddingRight: '5px'}}
-                        onClick={handleAddAgent}>{createClickable ? 'Create and Run' : 'Creating Agent...'}</button>
+                        onClick={handleAddAgent}>{createClickable ? 'Creaza si Ruleaza' : 'Pregatesc Asistentul...'}</button>
                 <button onClick={() => setCreateDropdown(!createDropdown)}
                         style={{border: 'none', backgroundColor: 'white'}}>
                   <Image width={20} height={21}

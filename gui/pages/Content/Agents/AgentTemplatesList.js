@@ -68,7 +68,7 @@ export default function AgentTemplatesList({
                                 fontSize: '16px'
                               }}>Choose a template</span>
               <button className="primary_button" onClick={redirectToCreateAgent}
-                      style={{float: 'right', marginRight: '3px'}}>&nbsp;Build From Scratch
+                      style={{float: 'right', marginRight: '3px'}}>&nbsp;Creaza Asistent Nou
               </button>
             </div>
           </div>
@@ -88,21 +88,21 @@ export default function AgentTemplatesList({
                    onClick={openMarketplace}>
                 <div style={{display: 'inline', overflow: 'auto'}}>
                   <div style={{display: 'flex', justifyContent: 'space-between', gap: '0.3vw'}}>
-                    <div style={{order: '0'}}><Image style={{marginTop: '-3px'}} width={16} height={16}
+                    {/* <div style={{order: '0'}}><Image style={{marginTop: '-3px'}} width={16} height={16}
                                                      src="/images/marketplace.svg"
                                                      alt="arrow-outward"/>&nbsp;&nbsp;Browse templates from marketplace
-                    </div>
-                    <div style={{order: '1'}}><Image style={{marginTop: '-3px'}} width={16} height={16}
-                                                     src="/images/arrow_outward.svg" alt="arrow-outward"/></div>
+                    </div> */}
+                    {/* <div style={{order: '1'}}><Image style={{marginTop: '-3px'}} width={16} height={16}
+                                                     src="/images/arrow_outward.svg" alt="arrow-outward"/></div> */}
                   </div>
-                  <div className={styles.tool_description}>
+                  {/* <div className={styles.tool_description}>
                     SuperAGI marketplace offers a large selection of templates to choose from, so you are sure to find
                     one that is right for you!
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div> : <div className={styles.empty_templates}>
-              <div style={{textAlign: 'center'}}>
+              {/* <div style={{textAlign: 'center'}}>
                 <Image width={100} height={100} src="/images/marketplace_empty.svg" alt="empty-templates"/>
                 <div style={{textAlign: 'center', color: 'white', marginTop: '15px', fontSize: '15px'}}>Browse templates
                   from marketplace
@@ -110,7 +110,7 @@ export default function AgentTemplatesList({
                 <div style={{marginTop: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                   <button className="primary_button" onClick={openMarketplace}>Go to marketplace</button>
                 </div>
-              </div>
+              </div> */}
             </div>}
           </div>
         </div> : <AgentCreate sendKnowledgeData={sendKnowledgeData} knowledge={knowledge} internalId={internalId}

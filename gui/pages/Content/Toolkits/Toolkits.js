@@ -18,7 +18,7 @@ export default function Toolkits({sendToolkitData, toolkits, env}) {
             contentType: "Add_Toolkit",
             internalId: createInternalId()
           })}>
-            + Add Tool
+            + Adauga Tool
           </button>
         </div>}
         {toolkits && toolkits.length > 0 ? (

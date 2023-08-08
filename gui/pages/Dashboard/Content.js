@@ -332,20 +332,20 @@ export default function Content({env, selectedView, selectedProjectId, organisat
                   contentType: "Create_Agent",
                   internalId: createInternalId()
                 })} className={styles.empty_state_button}>
-                  Create new agent&nbsp;<Image width={17} height={17} src="/images/arrow_forward_secondary.svg"
+                  Creaza asistent nou&nbsp;<Image width={17} height={17} src="/images/arrow_forward_secondary.svg"
                                                alt="forward-arrow"/>
                 </button>
               </div>
               {agents && agents.length > 0 &&
                 <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '12px'}}>
                   <button onClick={getLastActive} className={styles.empty_state_button}>
-                    View last active agent&nbsp;<Image width={17} height={17} src="/images/arrow_forward_secondary.svg"
+                    Ultimul asistent activ&nbsp;<Image width={17} height={17} src="/images/arrow_forward_secondary.svg"
                                                        alt="forward-arrow"/>
                   </button>
                 </div>}
               {env !== 'PROD' &&
                 <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '12px'}}>
-                  <button onClick={() => addTab({
+                  {/* <button onClick={() => addTab({
                     id: -2,
                     name: "new tool",
                     contentType: "Add_Toolkit",
@@ -353,15 +353,15 @@ export default function Content({env, selectedView, selectedProjectId, organisat
                   })} className={styles.empty_state_button}>
                     Add custom tool&nbsp;<Image width={17} height={17} src="/images/arrow_forward_secondary.svg"
                                                 alt="forward-arrow"/>
-                  </button>
+                  </button> */}
                 </div>}
-              <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '12px'}}>
+              {/* <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '12px'}}>
                 <button onClick={() => addTab({id: -3, name: "Settings", contentType: "Settings"})}
                         className={styles.empty_state_button}>
                   Go to settings&nbsp;<Image width={17} height={17} src="/images/arrow_forward_secondary.svg"
                                              alt="forward-arrow"/>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div> : <div className={styles.main_workspace}
@@ -451,7 +451,7 @@ export default function Content({env, selectedView, selectedProjectId, organisat
         </div>}
 
         {starModal && (<div className="modal" onClick={closeStarModal}>
-          <div className="modal-content" style={{width: '35%'}} onClick={preventDefault}>
+          {/* <div className="modal-content" style={{width: '35%'}} onClick={preventDefault}>
             <div className={styles1.detail_name} style={{width: '100%', textAlign: 'center'}}>Support the project by
               leaving a star on GitHub repository
             </div>
@@ -466,7 +466,7 @@ export default function Content({env, selectedView, selectedProjectId, organisat
                 I’ll do it later
               </div>
             </div>
-          </div>
+          </div> */}
         </div>)}
       </div>
     </>

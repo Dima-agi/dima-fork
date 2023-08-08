@@ -73,11 +73,11 @@ export default function ResourceManager({agentId, runs}) {
     uploadFile(agentId, formData)
       .then((response) => {
         fetchResources();
-        toast.success('Resource added successfully', {autoClose: 1800});
+        toast.success('Resursa adaugata cu succes', {autoClose: 1800});
       })
       .catch((error) => {
         toast.error(error, {autoClose: 1800});
-        console.error('Error uploading resource:', error);
+        console.error('Eroare la upload:', error);
       });
   }
 
@@ -123,9 +123,9 @@ export default function ResourceManager({agentId, runs}) {
         <div className={`file-drop-area ${isDragging ? 'dragging' : ''}`} onDragEnter={handleDragEnter}
              onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop}
              onClick={handleDropAreaClick}>
-          <div><p style={{textAlign: 'center', color: 'white', fontSize: '14px'}}>+ Choose or drop a file here</p>
-            <p style={{textAlign: 'center', color: '#888888', fontSize: '12px'}}>Supported file formats are txt, pdf,
-              docx, epub, csv, pptx only</p>
+          <div><p style={{textAlign: 'center', color: 'white', fontSize: '14px'}}>+ Incarca fisierul</p>
+            <p style={{textAlign: 'center', color: '#888888', fontSize: '12px'}}>Momentan suporta doar txt, pdf,
+              docx, epub, csv, pptx </p>
             <input type="file" ref={fileInputRef} style={{display: 'none'}} onChange={handleFileInputChange}/></div>
         </div>
       </div>}

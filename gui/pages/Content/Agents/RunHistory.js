@@ -32,7 +32,7 @@ export default function RunHistory({runs, setHistory, selectedRunId, setSelected
             <div>
               <Image width={16} height={16} src="/images/update.svg" alt="update-icon"/>
             </div>
-            <div style={{marginLeft: '7px'}}>Run history</div>
+            <div style={{marginLeft: '7px'}}>Istoric Run-uri</div>
           </div>
         </div>
         <div style={{display: 'flex'}}>
@@ -60,7 +60,7 @@ export default function RunHistory({runs, setHistory, selectedRunId, setSelected
                 <Image width={12} height={12} src="/images/calls_made.svg" alt="call-icon"/>
               </div>
               <div className={styles.history_info}>
-                {formatNumber(run?.num_of_calls || 0)} Calls
+                {formatNumber(run?.num_of_calls || 0)} Call-uri
               </div>
             </div>
             <div style={{display: 'flex', alignItems: 'center', marginLeft: '10px'}}>

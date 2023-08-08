@@ -64,7 +64,7 @@ class GoogleSearchTool(BaseTool):
         summary = self.summarise_result(query, results)
         links = [result["links"] for result in results if len(result["links"]) > 0]
         if len(links) > 0:
-            return summary + "\n\nLinks:\n" + "\n".join("- " + link for link in links[:3])
+            return summary + "\n\n<b>Link-uri:</b>\n" + "\n".join("- " + link for link in links[:3])
         return summary
 
     def summarise_result(self, query, snippets):
@@ -81,7 +81,7 @@ class GoogleSearchTool(BaseTool):
         summarize_prompt ="""Summarize the following text `{snippets}`
             Write a concise or as descriptive as necessary and attempt to
             answer the query: `{query}` as best as possible. Use markdown formatting for
-            longer responses."""
+            longer responses.ALWAYS RESPOND in Romanian"""
 
         summarize_prompt = summarize_prompt.replace("{snippets}", str(snippets))
         summarize_prompt = summarize_prompt.replace("{query}", query)

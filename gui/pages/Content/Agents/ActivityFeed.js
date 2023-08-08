@@ -153,14 +153,14 @@ export default function ActivityFeed({selectedRunId, selectedView, setFetchedDat
               <div className={styles.history_box} style={{background: '#272335', padding: '20px', cursor: 'default'}}>
                 <div style={{display: 'flex'}}>
                   <div style={{fontSize: '20px'}}>🏁</div>
-                  <div className={styles.feed_title}><i>All goals completed successfully!</i></div>
+                  <div className={styles.feed_title}><i>Task-urile completate cu succes!</i></div>
                 </div>
               </div>}
             {runStatus === 'ITERATION_LIMIT_EXCEEDED' &&
               <div className={styles.history_box} style={{background: '#272335', padding: '20px', cursor: 'default'}}>
                 <div style={{display: 'flex'}}>
                   <div style={{fontSize: '20px'}}>⚠️</div>
-                  <div className={styles.feed_title}><i>Stopped: Maximum iterations exceeded!</i></div>
+                  <div className={styles.feed_title}><i>M-am oprit. Am atins numarul maxim de iteratii!</i></div>
                 </div>
               </div>}
           </div>
