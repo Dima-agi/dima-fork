@@ -125,14 +125,14 @@ class GuidanceLanguageModel(AbstractLanguageModel):
 class GuidanceOpenAILanguageModel(GuidanceLanguageModel):
     def __init__(self, api_key, strategy="cot", evaluation_strategy="value", api_base="", api_model="", enable_ReAct_prompting=False):
         if api_key == "" or api_key == None:
-            api_key = os.environ.get("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", "")
+            api_key = os.environ.get("<openai-token>", "")
         if api_key != "":
             openai.api_key = api_key
         else:
             raise Exception("Please provide OpenAI API key")
 
         if api_base == ""or api_base == None:
-            api_base = os.environ.get("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", "")  # if not set, use the default base path of "https://api.openai.com/v1"
+            api_base = os.environ.get("<openai-token>", "")  # if not set, use the default base path of "https://api.openai.com/v1"
         if api_base != "":
             # e.g. https://api.openai.com/v1/ or your custom url
             openai.api_base = api_base

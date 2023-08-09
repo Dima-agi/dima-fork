@@ -57,7 +57,7 @@ class ToTTool(BaseTool):
         """
         try:
             api_model= "gpt-3.5-turbo"
-            model = OpenAILanguageModel(api_key='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', api_model=api_model)
+            model = OpenAILanguageModel(api_key='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', api_model=api_model)
         # Initialize the MonteCarloTreeofThoughts class with the model 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
             tree_of_thoughts = MonteCarloTreeofThoughts(model)
             

@@ -101,7 +101,7 @@ export default function AgentTemplate({template, env}) {
           <div className="col-3" style={{maxHeight: '84vh', overflowY: 'auto', padding: '0'}}>
             <div className={styles2.left_container}>
               <span className={styles2.top_heading}>{template.name}</span>
-              <span style={{fontSize: '12px', marginTop: '15px',}} className={styles.tool_publisher}>By SuperAGI <Image
+              <span style={{fontSize: '12px', marginTop: '15px',}} className={styles.tool_publisher}>By DimaAI <Image
                 width={14} height={14} src="/images/is_verified.svg" alt="is_verified"/>&nbsp;{'\u00B7'}&nbsp;<Image
                 width={14} height={14} src="/images/upload_icon.svg" alt="upload-icon"/></span>
               {isInstalled || (template && template.is_installed) ? (
