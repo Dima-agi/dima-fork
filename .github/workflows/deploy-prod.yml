@@ -1,0 +1,47 @@
+name: deploy-production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH into VPS and build
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_SERVER_IP }}
+          username: ${{ secrets.PROD_SERVER_USERNAME }}
+          key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PROD_SERVER_SSH_PORT }}
+          script: |
+            handle_error() {
+              exit_code=$?
+              if [ $exit_code -ne 0 ]; then
+                echo "Error: $1"
+                exit $exit_code
+              fi
+            }
+
+            cd /dima-agi/dima-fork
+
+            git checkout main
+            handle_error "Failed to checkout main branch"
+            
+            git pull
+            handle_error "Failed to pull latest changes"
+
+            sudo docker-compose -f docker-compose.prod.yaml build
+            handle_error "Failed to build Docker images"
+
+            sudo docker-compose -f docker-compose.prod.yaml down
+            handle_error "Failed to stop Docker containers"
+
+            sudo docker-compose -f docker-compose.prod.yaml up --remove-orphans -d
+            handle_error "Failed to start Docker containers"
+
+            sudo /usr/bin/docker image prune -a -f
+            handle_error "Failed to prune Docker images"
