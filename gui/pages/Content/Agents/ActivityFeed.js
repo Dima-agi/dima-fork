@@ -122,7 +122,7 @@ export default function ActivityFeed({selectedRunId, selectedView, setFetchedDat
             </div>
           </div> : <div>
             {feeds && feeds.map((f, index) => (<div key={index} className={styles.history_box}
-                                                    style={{background: '#6898e3ab', padding: '20px', cursor: 'default',border:'1px solid #6898e3'}}>
+                                                    style={{background: 'rgb(160, 197, 255)', padding: '20px', cursor: 'default',border:'1px solid rgb(204, 224, 255)'}}>
               <div style={{display: 'flex'}}>
                 {f.role === 'user' && <div className={styles.feed_icon}>💁</div>}
                 {f.role === 'system' && <div className={styles.feed_icon}>🛠️ </div>}

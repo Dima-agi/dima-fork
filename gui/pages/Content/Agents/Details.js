@@ -145,7 +145,7 @@ export default function Details({agentDetails, runCount, goals, instructions, ag
         <div className={styles.separator}></div>
         <div className={styles.agent_info_box}>
           <div><Image width={15} height={15} src="/images/close_fullscreen.svg" alt="constraint-icon"/></div>
-          <div style={info_text}>{agentDetails?.constraints.length || 0} Constraints</div>
+          <div style={info_text}>{agentDetails?.constraints.length || 0} Constrangeri</div>
         </div>
         <div className={styles.large_text_box}
              style={!showConstraints ? {overflow: 'hidden', display: '-webkit-box'} : {}}>

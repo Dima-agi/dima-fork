@@ -37,8 +37,8 @@ export default function TopBar({selectedProject, userName, env}) {
         <div className={styles.top_bar_section} style={{marginLeft: '7px', cursor: 'pointer'}}>
           <div style={{marginTop: '-3px'}}><Image width={14} height={14} src="/images/widgets.svg" alt="widgets-icon"/>
           </div>
-          <div className={styles.top_bar_font} style={{marginLeft: '-1px'}}
-               onClick={() => openNewTab(-4, "Marketplace", "Marketplace", false)}><p>Marketplace</p></div>
+          {/* <div className={styles.top_bar_font} style={{marginLeft: '-1px'}}
+               onClick={() => openNewTab(-4, "Marketplace", "Marketplace", false)}><p>Marketplace</p></div> */}
         </div>
       </div>
       <div className={styles.top_right}>

@@ -13,7 +13,7 @@ export default function Agents({sendAgentData, agents}) {
         <div className={styles.wrapper} style={{marginBottom: '10px', marginTop: '4px'}}>
           <button style={{width: '100%'}} className="secondary_button" onClick={() => sendAgentData({
             id: -1,
-            name: "new agent",
+            name: "Asistent nou",
             contentType: "Create_Agent",
             internalId: createInternalId()
           })}>

@@ -328,7 +328,7 @@ export default function Content({env, selectedView, selectedProjectId, organisat
               <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30px'}}>
                 <button onClick={() => addTab({
                   id: -1,
-                  name: "new agent",
+                  name: "Asistent nou",
                   contentType: "Create_Agent",
                   internalId: createInternalId()
                 })} className={styles.empty_state_button}>

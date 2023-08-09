@@ -74,7 +74,7 @@ export default function AddTool({internalId}) {
             <button style={{marginRight: '7px'}} className="secondary_button"
                     onClick={() => removeTab(-2, "new tool", "Add_Toolkit", internalId)}>Cancel
             </button>
-            <button disabled={!addClickable} className="primary_button" onClick={handleAddTool}>Add tool</button>
+            <button disabled={!addClickable} className="primary_button" onClick={handleAddTool}>Adauga tool</button>
           </div>
         </div>
       </div>

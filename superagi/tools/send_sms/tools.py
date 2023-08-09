@@ -25,8 +25,8 @@ class SMSTool(BaseTool):
  
     def _execute(self, to: str, body: str) -> str:
    
-        account_sid = "AC4ef0adcf797825207590f30f82e5c54a"
-        auth_token = "cfea53a12cfa835d9baaededc33aacff"
+        account_sid = "<twilio-token>"
+        auth_token = "<twilio-token>"
         
         client = Client(account_sid, auth_token)
         

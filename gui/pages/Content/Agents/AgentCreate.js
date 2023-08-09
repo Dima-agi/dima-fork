@@ -60,7 +60,7 @@ export default function AgentCreate({
   ];
   const [constraints, setConstraints] = useState(constraintsArray);
 
-  const [goals, setGoals] = useState(['Describe the agent goals here']);
+  const [goals, setGoals] = useState(['Descrie task-ul aici']);
   const [instructions, setInstructions] = useState(['']);
 
   const [modelsArray, setModelsArray] = useState([]);
@@ -1197,7 +1197,7 @@ export default function AgentCreate({
 
           <div style={{marginTop: '10px', display: 'flex', justifyContent: 'flex-end'}}>
             <button style={{marginRight: '7px'}} className="secondary_button"
-                    onClick={() => removeTab(-1, "new agent", "Create_Agent", internalId)}>Cancel
+                    onClick={() => removeTab(-1, "Asistent nou", "Create_Agent", internalId)}>Cancel
             </button>
             {showButton && (
               <button style={{marginRight: '7px'}} className="secondary_button"

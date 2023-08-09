@@ -9,7 +9,7 @@ export default function Knowledge({sendKnowledgeData, knowledge}) {
     <>
       <div className={styles1.container}>
         <div className={styles1.title_box}>
-          <p className={styles1.title_text}>Knowledges</p>
+          <p className={styles1.title_text}>Memorii Externe</p>
         </div>
         <div className={styles1.wrapper} style={{marginBottom: '10px', marginTop: '4px'}}>
           <button style={{width: '100%'}} className="secondary_button" onClick={() => sendKnowledgeData({
@@ -18,7 +18,7 @@ export default function Knowledge({sendKnowledgeData, knowledge}) {
             contentType: "Add_Knowledge",
             internalId: createInternalId()
           })}>
-            + Add Knowledge
+            + Adauga Memorie
           </button>
         </div>
 
@@ -39,7 +39,7 @@ export default function Knowledge({sendKnowledgeData, knowledge}) {
                         <div style={{marginLeft: '8px'}}>
                           <div className={styles.tool_name}>{item.name}&nbsp;{item.is_marketplace &&
                             <Image width={13} height={13} src="/images/widgets.svg" alt="markteplace-icon"/>}</div>
-                          <div className={styles.tool_publisher}>by {item.contributed_by}</div>
+                          <div className={styles.tool_publisher}>de {item.contributed_by}</div>
                         </div>
                       </div>
                     </div>
@@ -52,7 +52,7 @@ export default function Knowledge({sendKnowledgeData, knowledge}) {
           <div style={{
             marginTop: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center'
           }} className="form_label">
-            No Knowledge found
+            Nici o memorie externa
           </div>
         )}
       </div>
