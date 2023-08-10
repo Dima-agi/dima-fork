@@ -69,6 +69,7 @@ db_username = get_config('DB_USERNAME')
 db_password = get_config('DB_PASSWORD')
 db_name = get_config('DB_NAME')
 env = get_config('ENV', "DEV")
+frontend_url = get_config('FRONTEND_URL')
 
 if db_username is None:
     db_url = f'postgresql://{database_url}/{db_name}'
@@ -84,12 +85,12 @@ app.add_middleware(DBSessionMiddleware, db_url=db_url)
 # Configure CORS middleware
 origins = [
     # Add more origins if needed
-    "*",  # Allow all origins
+    frontend_url
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
