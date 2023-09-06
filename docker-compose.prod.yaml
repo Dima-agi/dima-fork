@@ -20,6 +20,7 @@ services:
       ]
     ports:
       - 127.0.0.1:8001:8001
+    container_name: backend_prod
 
   celery:
     volumes:
@@ -32,6 +33,7 @@ services:
     networks:
       - super_network
     command: [ "/app/entrypoint_celery.sh" ]
+    container_name: celery_prod
 
   gui:
     build:
@@ -43,6 +45,7 @@ services:
       - super_network
     ports:
       - 127.0.0.1:3000:3000
+    container_name: gui_prod
 
   super__redis:
     image: "redis/redis-stack-server:latest"
@@ -50,6 +53,7 @@ services:
       - super_network
     volumes:
       - redis_data:/data
+    container_name: redis_prod
 
   super__postgres:
     image: "docker.io/library/postgres:latest"
@@ -61,6 +65,7 @@ services:
       - superagi_postgres_data:/var/lib/postgresql/data/
     networks:
       - super_network
+    container_name: postgres_prod
 
 networks:
   super_network:
