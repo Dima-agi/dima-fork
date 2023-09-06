@@ -28,8 +28,8 @@ export const getTools = () => {
   return api.get(`/tools/list`);
 };
 
-export const getAgentDetails = (agentId) => {
-  return api.get(`/agents/get/details/${agentId}`);
+export const getAgentDetails = (agentId, agentExecutionId) => {
+  return api.get(`/agent_executions_configs/details/agent_id/${agentId}/agent_execution_id/${agentExecutionId}`);
 };
 
 export const getAgentExecutions = (agentId) => {
@@ -48,12 +48,12 @@ export const createAgent = (agentData, scheduledCreate) => {
   return api.post(scheduledCreate ? `/agents/schedule` : `/agents/create`, agentData);
 };
 
-export const addTool = (toolData) => {
-  return api.post(`/toolkits/get/local/install`, toolData);
+export const addAgentRun = (agentData) => {
+  return api.post( `/agentexecutions/add_run`, agentData);
 };
 
-export const updateAgents = (agentData) => {
-  return api.put(`/agentconfigs/update/`, agentData);
+export const addTool = (toolData) => {
+  return api.post(`/toolkits/get/local/install`, toolData);
 };
 
 export const updateExecution = (executionId, executionData) => {
@@ -120,8 +120,8 @@ export const fetchAgentTemplateListLocal = () => {
   return api.get('/agent_templates/list?template_source=local');
 };
 
-export const saveAgentAsTemplate = (agentId) => {
-  return api.post(`/agent_templates/save_agent_as_template/${agentId}`);
+export const saveAgentAsTemplate = (agentId, executionId) => {
+  return api.post(`/agent_templates/save_agent_as_template/agent_id/${agentId}/agent_execution_id/${executionId}`);
 };
 
 export const fetchAgentTemplateConfig = (templateId) => {
@@ -172,8 +172,16 @@ export const fetchToolTemplateOverview = (toolTemplateName) => {
   return api.get(`/toolkits/marketplace/readme/${toolTemplateName}`);
 };
 
+export const updateMarketplaceToolTemplate = (templateName) => {
+  return api.put(`/toolkits/update/${templateName}`);
+};
+
 export const installToolkitTemplate = (templateName) => {
   return api.get(`/toolkits/get/install/${templateName}`);
+};
+
+export const checkToolkitUpdate = (templateName) => {
+  return api.get(`/toolkits/check_update/${templateName}`);
 };
 
 export const getExecutionDetails = (executionId, agentId) => {
@@ -220,8 +228,16 @@ export const getToolsUsage = () => {
   return api.get(`analytics/tools/used`);
 };
 
+export const modelInfo = (model) => {
+  return api.get(`analytics/model_details/${model}`)
+}
+
 export const getLlmModels = () => {
   return api.get(`organisations/llm_models`);
+};
+
+export const getAgentWorkflows = () => {
+  return api.get(`organisations/agent_workflows`);
 };
 
 export const fetchVectorDBList = () => {
@@ -250,6 +266,10 @@ export const connectPinecone = (pineconeData) => {
 
 export const connectQdrant = (qdrantData) => {
   return api.post(`/vector_dbs/connect/qdrant`, qdrantData);
+};
+
+export const connectWeaviate = (weaviateData) => {
+  return api.post(`/vector_dbs/connect/weaviate`, weaviateData);
 };
 
 export const getKnowledge = () => {
@@ -287,3 +307,59 @@ export const fetchKnowledgeTemplateOverview = (knowledgeName) => {
 export const installKnowledgeTemplate = (knowledgeName, indexId) => {
   return api.get(`/knowledges/install/${knowledgeName}/index/${indexId}`);
 };
+
+export const createApiKey = (apiName) => {
+  return api.post(`/api-keys`, apiName);
+};
+
+export const getApiKeys = () => {
+  return api.get(`/api-keys`);
+};
+
+export const editApiKey = (apiDetails) => {
+  return api.put(`/api-keys`, apiDetails);
+};
+
+export const deleteApiKey = (apiId) => {
+  return api.delete(`/api-keys/${apiId}`);
+};
+
+
+export const storeApiKey = (model_provider, model_api_key) => {
+  return api.post(`/models_controller/store_api_keys`, {model_provider, model_api_key});
+}
+
+export const fetchApiKeys = () => {
+  return api.get(`/models_controller/get_api_keys`);
+}
+
+export const fetchApiKey = (model_provider) => {
+  return api.get(`/models_controller/get_api_key?model_provider=${model_provider}`);
+}
+
+export const verifyEndPoint = (model_api_key, end_point, model_provider) => {
+  return api.get(`/models_controller/verify_end_point`, {
+    params: { model_api_key, end_point, model_provider }
+  });
+}
+
+export const storeModel = (model_name, description, end_point, model_provider_id, token_limit, type, version) => {
+  return api.post(`/models_controller/store_model`,{model_name, description, end_point, model_provider_id, token_limit, type, version});
+}
+
+export const fetchModels = () => {
+  return api.get(`/models_controller/fetch_models`);
+}
+
+export const fetchModel = (model_id) => {
+  return api.get(`/models_controller/fetch_model/${model_id}`);
+}
+
+export const fetchModelData = (model) => {
+  return api.post(`/models_controller/fetch_model_data`, { model: model })
+}
+
+export const fetchMarketPlaceModel = () => {
+  return api.get(`/models_controller/get/list`)
+}
+

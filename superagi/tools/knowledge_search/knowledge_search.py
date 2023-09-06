@@ -44,12 +44,12 @@ class KnowledgeSearchTool(BaseTool):
         vector_db_index = VectordbIndices.get_vector_index_from_id(session, knowledge.vector_db_index_id)
         vector_db = Vectordbs.get_vector_db_from_id(session, vector_db_index.vector_db_id)
         db_creds = VectordbConfigs.get_vector_db_config_from_db_id(session, vector_db.id)
-        model_api_key = Configuration.fetch_configuration(session, organisation_id, "model_api_key")
-        model_source = Configuration.fetch_configuration(session, organisation_id, "model_source")
+        model_api_key = self.get_tool_config('OPENAI_API_KEY')
+        model_source = "OpenAI"
         embedding_model = AgentExecutor.get_embedding(model_source, model_api_key)
         try:
             if vector_db_index.state == "Custom":
-                filters = {}
+                filters = None
             if vector_db_index.state == "Marketplace":
                 filters = {"knowledge_name": knowledge.name}
             vector_db_storage = VectorFactory.build_vector_storage(vector_db.db_type, vector_db_index.name, embedding_model, **db_creds)

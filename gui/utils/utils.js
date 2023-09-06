@@ -14,16 +14,19 @@ const toolkitData = {
   'Searx Toolkit': '/images/searx_icon.svg',
   'Slack Toolkit': '/images/slack_icon.svg',
   'Web Scraper Toolkit': '/images/webscraper_icon.svg',
+  'Web Scrapper Toolkit': '/images/webscraper_icon.svg',
   'Twitter Toolkit': '/images/twitter_icon.svg',
   'Google SERP Toolkit': '/images/google_serp_icon.svg',
   'File Toolkit': '/images/filemanager_icon.svg',
-  'CodingToolkit': '/images/app-logo-light.png',
-  'Thinking Toolkit': '/images/app-logo-light.png',
-  'Image Generation Toolkit': '/images/app-logo-light.png',
+  'CodingToolkit': '/images/superagi_logo.png',
+  'Thinking Toolkit': '/images/superagi_logo.png',
+  'Image Generation Toolkit': '/images/superagi_logo.png',
   'DuckDuckGo Search Toolkit': '/images/duckduckgo_icon.png',
   'Instagram Toolkit': '/images/instagram.png',
   'Knowledge Search Toolkit': '/images/knowledeg_logo.png',
   'Notion Toolkit': '/images/notion_logo.png',
+  'ApolloToolkit': '/images/apollo_logo.png',
+  'Google Analytics Toolkit': '/images/google_analytics_logo.png'
 };
 
 export const getUserTimezone = () => {
@@ -285,6 +288,7 @@ const removeAgentInternalId = (internalId) => {
     localStorage.removeItem("agent_template_id_" + String(internalId));
     localStorage.removeItem("agent_knowledge_" + String(internalId));
     localStorage.removeItem("agent_knowledge_id_" + String(internalId));
+    localStorage.removeItem("is_editing_agent_" + String(internalId));
   }
 };
 
@@ -434,7 +438,8 @@ export const returnResourceIcon = (file) => {
 export const returnDatabaseIcon = (database) => {
   const dbTypeIcons = {
     'Pinecone': '/images/pinecone.svg',
-    'Qdrant': '/images/qdrant.svg'
+    'Qdrant': '/images/qdrant.svg',
+    'Weaviate' : '/images/weaviate.svg'
   };
 
   return dbTypeIcons[database]
@@ -456,4 +461,24 @@ export const preventDefault = (e) => {
 
 export const excludedToolkits = () => {
   return ["Thinking Toolkit", "Human Input Toolkit", "Resource Toolkit"];
+}
+
+export const getFormattedDate = (data) => {
+  let date = new Date(data);
+  const year = date.getFullYear();
+  const day = date.getDate();
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const month = months[date.getMonth()];
+  return `${day} ${month} ${year}`;
+}
+
+export const modelIcon = (model) => {
+  const icons = {
+    'Hugging Face': '/images/huggingface_logo.svg',
+    'Google Palm': '/images/google_palm_logo.svg',
+    'Replicate': '/images/replicate_logo.svg',
+    'OpenAI': '/images/openai_logo.svg',
+  }
+
+  return icons[model];
 }

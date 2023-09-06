@@ -290,7 +290,7 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 0.3vw;
+    gap: 6px;
 }
 
 .agent_resources {
@@ -516,8 +516,16 @@
     overflow-x:hidden;
 }
 
-.tools_icon{
-    border-radius: 25px;
-    background: black;
-    position: relative;
+.settings_tab_button_clicked{
+    background: #454254;
+    padding-right: 15px
+}
+
+.settings_tab_button{
+    background: transparent;
+    padding-right: 15px
+}
+
+.settings_tab_img{
+    margin-top: -1px;
 }

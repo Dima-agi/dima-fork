@@ -75,7 +75,7 @@ export default function ApmDashboard() {
     const fetchData = async () => {
       try {
         const [metricsResponse, agentsResponse, activeRunsResponse, toolsUsageResponse] = await Promise.all([getMetrics(), getAllAgents(), getActiveRuns(), getToolsUsage()]);
-        const models = ['gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-32k', 'google-palm-bison-001'];
+        const models = ['gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-32k', 'google-palm-bison-001', 'replicate-llama13b-v2-chat'];
 
         assignDefaultDataPerModel(metricsResponse.data.agent_details.model_metrics, models);
         assignDefaultDataPerModel(metricsResponse.data.tokens_details.model_metrics, models);
@@ -129,14 +129,8 @@ export default function ApmDashboard() {
   return (
     <div className={style.apm_dashboard_container}>
       <div id="apm_dashboard" className={style.apm_dashboard}>
-        <div style={{
-          display: 'inline-flex',
-          justifyContent: 'space-between',
-          width: '100%',
-          alignItems: 'center',
-          padding: '0 8px'
-        }}>
-          <span className="text_14 mt_6 ml_6">Monitorizarea Performantei Asistentilor</span>
+        <div className="horizontal_space_between w_100 align_center padding_0_8">
+          <span className="text_14 mt_6 ml_6">Agent Performance Monitoring</span>
           {/*<button onClick={onClickLayoutChange} className="primary_button">Reset</button>*/}
         </div>
         <ResponsiveGridLayout
@@ -213,28 +207,28 @@ export default function ApmDashboard() {
                 <img src="/images/no_permissions.svg" width={190} height={74} alt="No Data"/>
                 <span className="text_12 color_white mt_6">Nici un tool gasit</span>
               </div> : <div className="scrollable_container">
-                <table className="table_css mt_10" style={{margin: 0, padding: 0}}>
+                <table className="table_css margin_0 padding_0">
                   <thead>
                   <tr style={{borderTop: 'none'}}>
-                    <th className="table_header" style={{width: '56%'}}>Tool</th>
-                    <th className="table_header text_align_right" style={{width: '22%'}}>Asistenti</th>
-                    <th className="table_header text_align_right" style={{width: '22%'}}>Call-uri</th>
+                    <th className="table_header w_56">Tool</th>
+                    <th className="table_header text_align_right w_22">Agents</th>
+                    <th className="table_header text_align_right w_22">Calls</th>
                   </tr>
                   </thead>
                 </table>
 
                 <div className="overflow_auto w_100">
-                  <table className="table_css mt_10" style={{margin: 0}}>
+                  <table className="table_css margin_0">
                     <tbody>
                     {toolsUsed.map((tool, index) => (
                       <tr key={index}>
                         <td className="table_data" style={{width: '100%', display: 'flex', alignItems: 'center'}}>
-                          <Image className="image_class" style={{background: 'black'}} width={20} height={20}
+                          <Image className="image_class bg_black" width={20} height={20}
                                  src={returnToolkitIcon(tool.toolkit)} alt="tool-icon"/>
                           <span>{tool.tool_name}</span>
                         </td>
-                        <td className="table_data text_align_right" style={{width: '22%'}}>{tool.unique_agents}</td>
-                        <td className="table_data text_align_right" style={{width: '22%'}}>{tool.total_usage}</td>
+                        <td className="table_data text_align_right w_22">{tool.unique_agents}</td>
+                        <td className="table_data text_align_right w_22">{tool.total_usage}</td>
                       </tr>
                     ))}
                     </tbody>
@@ -252,39 +246,28 @@ export default function ApmDashboard() {
                   className="text_12 color_white mt_6">{selectedAgent === 'Select an Agent' ? 'Please Select an Agent' :
                   <React.Fragment>Nici un run pentru <b>{selectedAgent}</b></React.Fragment>}</span>
               </div> : <div className="scrollable_container mt_16">
-                <table className="table_css mt_10" style={{margin: 0, padding: 0}}>
+                <table className="table_css margin_0 padding_0">
                   <thead>
                   <tr style={{borderTop: 'none'}}>
-                    <th className="table_header" style={{width: '20%'}}>Nume Asistent</th>
-                    <th className="table_header text_align_right" style={{width: '10%'}}>Model <img width={14}
-                                                                                                    height={14}
-                                                                                                    src="/images/arrow_downward.svg"
+                    <th className="table_header w_20">Agent Name</th>
+                    <th className="table_header text_align_right w_10">Model <img width={14} height={14} src="/images/arrow_downward.svg"
                                                                                                     alt="arrow_down"/>
                     </th>
-                    <th className="table_header text_align_right" style={{width: '12%'}}>Tokeni consumati <img width={14}
-                                                                                                              height={14}
-                                                                                                              src="/images/arrow_downward.svg"
+                    <th className="table_header text_align_right w_12">Tokens Consumed <img width={14} height={14} src="/images/arrow_downward.svg"
                                                                                                               alt="arrow_down"/>
                     </th>
-                    <th className="table_header text_align_right" style={{width: '6%'}}>Run-uri <img width={14} height={14}
-                                                                                                  src="/images/arrow_downward.svg"
+                    <th className="table_header text_align_right w_6">Runs <img width={14} height={14} src="/images/arrow_downward.svg"
                                                                                                   alt="arrow_down"/>
                     </th>
-                    <th className="table_header text_align_right" style={{width: '12%'}}>Avg tokens per run <img
+                    <th className="table_header text_align_right w_12">Avg tokens per run <img
                       width={14} height={14} src="/images/arrow_downward.svg" alt="arrow_down"/></th>
-                    <th className="table_header text_align_right" style={{width: '20%'}}>Tool-uri <img width={14}
-                                                                                                    height={14}
-                                                                                                    src="/images/arrow_downward.svg"
+                    <th className="table_header text_align_right w_20">Tools <img width={14} height={14} src="/images/arrow_downward.svg"
                                                                                                     alt="arrow_down"/>
                     </th>
-                    <th className="table_header text_align_right" style={{width: '10%'}}>Call-uri <img width={14}
-                                                                                                    height={14}
-                                                                                                    src="/images/arrow_downward.svg"
+                    <th className="table_header text_align_right w_10">Calls <img width={14} height={14} src="/images/arrow_downward.svg"
                                                                                                     alt="arrow_down"/>
                     </th>
-                    <th className="table_header text_align_right" style={{width: '10%'}}>Avg Run Time <img width={14}
-                                                                                                           height={14}
-                                                                                                           src="/images/arrow_downward.svg"
+                    <th className="table_header text_align_right w_10">Avg Run Time <img width={14} height={14} src="/images/arrow_downward.svg"
                                                                                                            alt="arrow_down"/>
                     </th>
                   </tr>
@@ -292,26 +275,26 @@ export default function ApmDashboard() {
                 </table>
 
                 <div className="overflow_auto w_100">
-                  <table className="table_css mt_10" style={{margin: 0}}>
+                  <table className="table_css margin_0">
                     <tbody>
                     {allAgents.map((run, i) => (
                       <tr key={i}>
-                        <td className="table_data" style={{width: '20%'}}>{run.name}</td>
-                        <td className="table_data text_align_right" style={{width: '10%'}}>{run.model_name}</td>
-                        <td className="table_data text_align_right"
-                            style={{width: '12%'}}>{formatNumber(run.total_tokens)}</td>
-                        <td className="table_data text_align_right" style={{width: '6%'}}>{run.runs_completed}</td>
-                        <td className="table_data text_align_right"
-                            style={{width: '12%'}}>{run.runs_completed ? (run.total_tokens / run.runs_completed).toFixed(1) : '-'}</td>
+                        <td className="table_data w_20">{run.name}</td>
+                        <td className="table_data text_align_right w_10">{run.model_name}</td>
+                        <td className="table_data text_align_right w_12">{formatNumber(run.total_tokens)}</td>
+                        <td className="table_data text_align_right w_6">{run.runs_completed}</td>
+                        <td className="table_data text_align_right w_12">
+                          {run.runs_completed ? (run.total_tokens / run.runs_completed).toFixed(1) : '-'}
+                        </td>
                         <td className="table_data text_align_right" style={{width: '20%'}}>
                           {run.tools_used && run.tools_used.slice(0, 3).map((tool, index) => (
-                            <div key={index} className="tools_used">{tool}</div>
+                              <div key={index} className="tools_used">{tool}</div>
                           ))}
                           {run.tools_used && run.tools_used.length > 3 &&
                               <div style={{display:'inline-flex'}}>
                                 {(showToolTip && toolTipIndex === i) && <div className="tools_used_tooltip">
                                   {run.tools_used.slice(3).map((tool,index) =>
-                                      <div key={index} className="tools_used">{tool}</div>
+                                      <div className="tools_used" key={index}>{tool}</div>
                                   )}
                                 </div>}
                                 <div className="tools_used cursor_pointer" onMouseEnter={() => setToolTipState(true,i)} onMouseLeave={() => setToolTipState(false,i)}>
@@ -320,9 +303,10 @@ export default function ApmDashboard() {
                               </div>
                           }
                         </td>
-                        <td className="table_data text_align_right" style={{width: '10%'}}>{run.total_calls}</td>
-                        <td className="table_data text_align_right"
-                            style={{width: '10%'}}>{run.avg_run_time === 0 ? '-' : `${parseFloat((run.avg_run_time / 60).toFixed(1))} mins`}</td>
+                        <td className="table_data text_align_right w_10">{run.total_calls}</td>
+                        <td className="table_data text_align_right w_10">
+                          {run.avg_run_time === 0 ? '-' : `${parseFloat((run.avg_run_time / 60).toFixed(1))} mins`}
+                        </td>
                       </tr>))}
                     </tbody>
                   </table>
@@ -339,29 +323,25 @@ export default function ApmDashboard() {
                 </div> : activeRuns.map((run, index) => (
                   <div key={index} className="active_runs">
                     <span className="text_14">{run.name}</span>
-                    <div style={{display: 'inline-flex', alignItems: 'center'}}><span
-                      className="text_12 mt_6">{run.agent_name} ·  <Image width={12} height={12}
-                                                                          src="/images/schedule.svg"
-                                                                          alt="schedule-icon"/> {formatTime(run.created_at)}</span>
+                    <div style={{display: 'inline-flex', alignItems: 'center'}}>
+                      <span className="text_12 mt_6">{run.agent_name} ·  <Image width={12} height={12} src="/images/schedule.svg" alt="schedule-icon"/>
+                        {formatTime(run.created_at)}</span>
                     </div>
                   </div>
                 ))}
             </div>
           </div>
           <div key="total_tokens_consumed" className="display_column_container">
-            <div style={{display: 'inline-flex', justifyContent: 'space-between', width: '100%'}}>
-              <span className="text_14 mb_8">Tokens Consumati de Run-uri</span>
+            <div className="horizontal_space_between w_100">
+              <span className="text_14 mb_8">Tokens Consumed by Runs</span>
               <div style={{position: 'relative', display: 'flex', flexDirection: 'column'}}>
                 {allAgents.length > 0 && <div>
-                  <div className="text_14 mb_8 cursor_pointer"
-                       onClick={() => setDropDown2(!dropdown2)}>{selectedAgent}<img width={18} height={16}
-                                                                                    src="/images/expand_more.svg"/>
-                  </div>
+                  <div className="text_14 mb_8 cursor_pointer" onClick={() => setDropDown2(!dropdown2)}>{selectedAgent}<img width={18} height={16}
+                                                                                    src="/images/expand_more.svg"/></div>
                   {dropdown2 &&
-                    <div className="custom_select_options" style={{padding: '8px', position: 'absolute', right: 0}}>
+                    <div className="custom_select_options padding_8 position_absolute r_0">
                       {allAgents.map((agent, index) => (
-                        <div key={index} className="custom_select_option" style={{padding: '8px'}}
-                             onClick={() => handleSelectedAgent(agent.agent_id, agent.name)}>{agent.name}</div>))}
+                        <div key={index} className="custom_select_option padding_8" onClick={() => handleSelectedAgent(agent.agent_id, agent.name)}>{agent.name}</div>))}
                     </div>}
                 </div>}
               </div>
@@ -380,19 +360,17 @@ export default function ApmDashboard() {
           </div>
 
           <div key="total_calls_made" className="display_column_container">
-            <div style={{display: 'inline-flex', justifyContent: 'space-between', width: '100%'}}>
-              <span className="text_14 mb_8">Call-uri facute de Run-uri</span>
+            <div className="horizontal_space_between w_100">
+              <span className="text_14 mb_8">Calls Made by Runs</span>
               <div className="vertical_containers position_relative">
                 {allAgents.length > 0 && <div>
                   <div className="text_14 mb_8 cursor_pointer"
-                       onClick={() => setDropDown1(!dropdown1)}>{selectedAgent}<img width={18} height={16}
-                                                                                    src="/images/expand_more.svg"/>
+                       onClick={() => setDropDown1(!dropdown1)}>{selectedAgent}<img width={18} height={16} src="/images/expand_more.svg"/>
                   </div>
                   {dropdown1 &&
-                    <div className="custom_select_options" style={{padding: '8px', position: 'absolute', right: 0}}>
+                    <div className="custom_select_options padding_8 position_absolute r_0">
                       {allAgents.map((agent, index) => (
-                        <div key={index} className="custom_select_option" style={{padding: '8px'}}
-                             onClick={() => handleSelectedAgent(agent.agent_id, agent.name)}>{agent.name}</div>))}
+                        <div key={index} className="custom_select_option padding_8" onClick={() => handleSelectedAgent(agent.agent_id, agent.name)}>{agent.name}</div>))}
                     </div>}
                 </div>}
               </div>
@@ -410,18 +388,17 @@ export default function ApmDashboard() {
               </div>}
           </div>
           <div key="tokens_consumed_per_call" className="display_column_container">
-            <div style={{display: 'inline-flex', justifyContent: 'space-between', width: '100%'}}>
-              <span className="text_14 mb_8">Avg. Tokens consumati in call-uri per run </span>
+            <div className="horizontal_space_between w_100">
+              <span className="text_14 mb_8">Average Tokens consumed in all calls per run </span>
               <div className="vertical_containers position_relative">
                 {allAgents.length > 0 && <div>
                   <div className="text_14 mb_8 cursor_pointer"
-                       onClick={() => setDropDown3(!dropdown3)}>{selectedAgent}<img width={18} height={16}
-                                                                                    src="/images/expand_more.svg"/>
+                       onClick={() => setDropDown3(!dropdown3)}>{selectedAgent}<img width={18} height={16} src="/images/expand_more.svg"/>
                   </div>
                   {dropdown3 &&
-                    <div className="custom_select_options" style={{padding: '8px', position: 'absolute', right: 0}}>
+                    <div className="custom_select_options padding_8 position_absolute r_0">
                       {allAgents.map((agent, index) => (
-                        <div key={index} className="custom_select_option" style={{padding: '8px'}}
+                        <div key={index} className="custom_select_option padding_8"
                              onClick={() => handleSelectedAgent(agent.agent_id, agent.name)}>{agent.name}</div>))}
                     </div>}
                 </div>}

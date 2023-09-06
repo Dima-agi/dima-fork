@@ -203,8 +203,7 @@ class GithubHelper:
 
         return file_response.status_code
 
-    def add_file(self, repository_owner, repository_name, file_name, folder_path, head_branch, base_branch, headers,
-                 commit_message, agent_id, agent_execution_id, session):
+    def add_file(self, repository_owner, repository_name, file_name, folder_path, head_branch, base_branch, headers, commit_message, agent_id, agent_execution_id, session):
         """
         Adds a file to the given repository.
 
@@ -224,7 +223,7 @@ class GithubHelper:
         base64_bytes = base64.b64encode(body_bytes)
         file_content = base64_bytes.decode("ascii")
         file_path = self.get_file_path(file_name, folder_path)
-        file_url = f'https://api.github.com/repos/{self.github_username}/{repository_name}/contents/{file_path}'
+        file_url = f'https://api.github.com/repos/{repository_owner}/{repository_name}/contents/{file_path}'
         file_params = {
             'message': commit_message,
             'content': file_content,
@@ -329,6 +328,7 @@ class GithubHelper:
                                                                     agent=Agent.get_agent_from_id(session, agent_id),
                                                                     agent_execution=AgentExecution.get_agent_execution_from_id(
                                                                   session, agent_execution_id))
+
         if StorageType.get_storage_type(get_config("STORAGE_TYPE", StorageType.FILE.value)) == StorageType.S3:
                 attachment_data = S3Helper().read_from_s3(final_path)
         else:

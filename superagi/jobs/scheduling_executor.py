@@ -1,11 +1,13 @@
-import importlib
-from datetime import datetime, timedelta
+import ast
+from datetime import datetime
 
 from fastapi import HTTPException
 from sqlalchemy.orm import sessionmaker
+from superagi.models.tool import Tool
 
+from superagi.models.workflows.iteration_workflow import IterationWorkflow
 from superagi.worker import execute_agent
-from superagi.models.agent_workflow import AgentWorkflow
+from superagi.models.workflows.agent_workflow import AgentWorkflow
 from superagi.models.agent import Agent
 from superagi.models.agent_config import AgentConfiguration
 from superagi.models.agent_execution import AgentExecution
@@ -36,25 +38,24 @@ class ScheduledAgentExecutor:
 
 
 
-        start_step_id = AgentWorkflow.fetch_trigger_step_id(session, agent.agent_workflow_id)
+        start_step = AgentWorkflow.fetch_trigger_step_id(session, agent.agent_workflow_id)
+        iteration_step_id = IterationWorkflow.fetch_trigger_step_id(session,
+                                                                    start_step.action_reference_id).id if start_step.action_type == "ITERATION_WORKFLOW" else -1
+
         db_agent_execution = AgentExecution(status="RUNNING", last_execution_time=datetime.now(),
                                             agent_id=agent_id, name=name, num_of_calls=0,
                                             num_of_tokens=0,
-                                            current_step_id=start_step_id)
+                                            current_agent_step_id=start_step.id,
+                                            iteration_workflow_step_id=iteration_step_id)
 
         session.add(db_agent_execution)
         session.commit()
 
-        goal_value = session.query(AgentConfiguration.value).filter(AgentConfiguration.agent_id == agent_id).filter(AgentConfiguration.key == 'goal').first()[0]
-        instruction_value = session.query(AgentConfiguration.value).filter(AgentConfiguration.agent_id == agent_id).filter(AgentConfiguration.key == 'instruction').first()[0]
-
-        agent_execution_configs = {
-            "goal": goal_value,
-            "instruction": instruction_value
-        }
-
-
-        AgentExecutionConfiguration.add_or_update_agent_execution_config(session= session, execution=db_agent_execution,agent_execution_configs=agent_execution_configs)
+        agent_execution_id = db_agent_execution.id
+        agent_configurations = session.query(AgentConfiguration).filter(AgentConfiguration.agent_id == agent_id).all()
+        for agent_config in agent_configurations:
+            agent_execution_config = AgentExecutionConfiguration(agent_execution_id=agent_execution_id, key=agent_config.key, value=agent_config.value)
+            session.add(agent_execution_config)
 
 
         organisation = agent.get_agent_organisation(session)

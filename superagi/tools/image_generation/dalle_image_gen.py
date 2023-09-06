@@ -35,8 +35,8 @@ class DalleImageGenTool(BaseTool):
     agent_execution_id: int = None
     resource_manager: Optional[FileManager] = None
 
-    class Config:
-        arbitrary_types_allowed = True
+    # class Config:
+    #     arbitrary_types_allowed = True
 
     def _execute(self, prompt: str, image_names: list, size: int = 512, num: int = 2):
         """
@@ -56,12 +56,10 @@ class DalleImageGenTool(BaseTool):
         organisation_id = toolkit.organisation_id
         if size not in [256, 512, 1024]:
             size = min([256, 512, 1024], key=lambda x: abs(x - size))
+
         api_key = self.get_tool_config("OPENAI_API_KEY")
         if api_key is None:
-            model_source = Configuration.fetch_configuration(session, organisation_id, "model_source")
-            if model_source != "OpenAi":
-                return "Enter your OpenAi api key in the configuration"
-            api_key = Configuration.fetch_configuration(session, organisation_id, "model_api_key")
+            return "Enter your OpenAi api key in the configuration"
 
         response = OpenAiDalle(api_key=api_key, number_of_results=num).generate_image(
             prompt, size)
